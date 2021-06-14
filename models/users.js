@@ -33,7 +33,7 @@ const UsersSchema=new schema({
     }
 });
 UsersSchema.methods.generateToken = async function() {
-    let token=await jwt.sign({_id:this._id,typeUser:this.typeUser},process.env.JWT_SECRET_KEY,{ expiresIn: '1h' });
+    let token=await jwt.sign({_id:this._id,role:this.role,status:this.status},process.env.JWT_SECRET_KEY,{ expiresIn: '1h' });
     return token;
 }
 

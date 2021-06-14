@@ -3,6 +3,7 @@ const asyncHandler = require('./async');
 
 const protect=asyncHandler(async (req,res,next)=>{
    const auth= req.headers.authorization;
+   console.log(auth);
    if(auth)
    {
         const token=auth.split(' ')[1];
@@ -17,8 +18,8 @@ const protect=asyncHandler(async (req,res,next)=>{
 })
 const authorize=(...roles)=>{
    return (req,res,next)=>{
-      console.log(req.user.typeUser);
-      if(roles.includes(req.user.typeUser))
+      console.log(req.user.role);
+      if(roles.includes(req.user.role))
       {
          next();
       }

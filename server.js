@@ -2,8 +2,11 @@ const express=require('express');
 const app= express();
 const cors=require('cors');
 require('colors');
+const errorHandler=require('./middleware/errorhandler');
 const databaseConnection=require('./db');
-const userRoute = require('./routes/users');
+const userRoute = require('./Admin/routes/users');
+require('dotenv').config();
+
 
 app.use(cors());
 
@@ -11,7 +14,7 @@ app.use(express.json());
 
 databaseConnection();
 
-app.use("/users",userRoute);
+app.use("/api/v1/users",userRoute);
 
 app.use(errorHandler);
 
