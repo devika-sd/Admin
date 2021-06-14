@@ -37,6 +37,11 @@ UsersSchema.methods.generateToken = async function() {
     return token;
 }
 
+UsersSchema.methods.checkpassword = async function (rawpassword) {
+    console.log("Inside a match password");
+    return await bcrypt.compare(rawpassword,this.password);
+}
+
 UsersSchema.pre('save',async function () {
     console.log(this)
     console.log("before save operation  "+this.password);
